@@ -1,0 +1,26 @@
+<h2>Lista de Compras</h2>
+
+<form #formShopping="ngForm">
+    <input type="number" min="0" max="100"  placeholder="Qtde" style="width: 50px"
+        name="itemAmount" [(ngModel)]="item.amount" required 
+        #itemAmount="ngModel" />
+    
+    <input type="text" size="30" placeholder="Descrição"
+        name="itemName" [(ngModel)]="item.name" required 
+        #itemName="ngModel"/>
+    
+    <input type="button" value="+" (click)="addItem()" [disabled]="formShopping.invalid"/> 
+    <br />
+
+    <ul>
+        <li *ngIf="itemAmount.touched && itemAmount.invalid">Quantidade é obrigatória!</li>
+        <li *ngIf="itemName.touched && itemName.invalid">Descrição é obrigatória!</li>
+    </ul>
+</form>
+
+<h4>Meus itens</h4>
+<ul>
+    <li *ngFor="let it of shoppingList">
+        {{it.amount}} - {{it.name}}
+    </li>
+</ul>
